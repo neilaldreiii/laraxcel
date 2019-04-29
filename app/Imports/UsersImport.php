@@ -2,22 +2,13 @@
 
 namespace App\Imports;
 
-use App\User;
-use Maatwebsite\Excel\Concerns\ToModel;
-
-class UsersImport implements ToModel
+use Maatwebsite\Excel\Concerns\WithMultipleSheets;
+class UsersImport implements WithMultipleSheets
 {
-    /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
-    public function model(array $row)
+    public function sheets(): array
     {
-        return new User([
-            'name' => $row[0],
-            'email' => $row[1],
-            'password' => \Hash::make('123456')
-        ]);
+        return [
+            new FirstSheetImport()
+        ];
     }
 }

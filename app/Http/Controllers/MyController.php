@@ -20,7 +20,7 @@ class MyController extends Controller
     /**
      * @return \Illuminate\Support\Collection
      */
-    public function export() 
+    public function export()
     {
         return Excel::download(new UsersExport, 'users.xlsx');
     }
